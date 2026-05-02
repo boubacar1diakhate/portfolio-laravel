@@ -5,11 +5,17 @@ namespace Database\Seeders;
 use Illuminate\Database\Seeder;
 use App\Models\Project;
 use App\Models\Skill;
+use Illuminate\Support\Facades\DB;
 
 class DatabaseSeeder extends Seeder
 {
     public function run(): void
     {
+
+ // Vider les tables avant d'insérer
+    DB::table('projects')->truncate();
+    DB::table('skills')->truncate();
+  
         // ─── COMPÉTENCES ───────────────────────────────────────────────
         $skills = [
             ['name' => 'HTML / CSS',      'category' => 'frontend', 'level' => 92, 'order' => 1],
