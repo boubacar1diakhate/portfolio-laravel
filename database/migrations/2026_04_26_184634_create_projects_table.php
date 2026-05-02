@@ -15,10 +15,13 @@ return new class extends Migration
             $table->text('description');
             $table->text('long_description')->nullable();
             $table->string('image')->nullable();
+            $table->json('screenshots')->nullable();
+            $table->string('video_url')->nullable();
             $table->string('demo_url')->nullable();
             $table->string('github_url')->nullable();
             $table->json('technologies')->nullable();
             $table->boolean('featured')->default(false);
+            $table->string('status')->default('termine');
             $table->integer('order')->default(0);
             $table->timestamps();
         });

@@ -1,14 +1,14 @@
-@extends('layouts.app')
 
-@section('title', 'Boubacar Diakhate — Développeur Full-Stack & DBA')
-@section('meta_desc', 'Portfolio de Boubacar Diakhate, développeur Full-Stack et Administrateur Base de Données basé à Dakar, Sénégal. Spécialisé Laravel, React, Django, PostgreSQL.')
 
-@section('content')
+<?php $__env->startSection('title', 'Boubacar Diakhate — Développeur Full-Stack & DBA'); ?>
+<?php $__env->startSection('meta_desc', 'Portfolio de Boubacar Diakhate, développeur Full-Stack et Administrateur Base de Données basé à Dakar, Sénégal. Spécialisé Laravel, React, Django, PostgreSQL.'); ?>
 
-    {{-- Hero --}}
-    @include('partials.hero')
+<?php $__env->startSection('content'); ?>
 
-    {{-- À propos --}}
+    
+    <?php echo $__env->make('partials.hero', array_diff_key(get_defined_vars(), ['__data' => 1, '__path' => 1]))->render(); ?>
+
+    
     <section id="apropos" class="py-24 px-6 md:px-16 border-t border-border">
         <div class="max-w-6xl mx-auto grid md:grid-cols-2 gap-16 items-center">
 
@@ -16,7 +16,7 @@
             <div class="reveal order-2 md:order-1">
                 <div class="relative w-fit mx-auto">
                    <div class="w-96 h-96 rounded-3xl overflow-hidden border-2 border-accent shadow-2xl">
-                      <img src="{{ asset('images/boubacar.jpeg') }}" 
+                      <img src="<?php echo e(asset('images/boubacar.jpeg')); ?>" 
                           alt="Boubacar Diakhate"
                           class="w-full h-full object-cover object-top">
                    </div>
@@ -25,7 +25,7 @@
                         <p class="text-xs text-gray-500">ans de formation</p>
                     </div>
                     <div class="absolute -top-4 -left-4 bg-card border border-accent/40 rounded-2xl px-5 py-4 font-mono text-center shadow-xl">
-                        <p class="text-xl font-bold text-accent">{{ $projects->count() }}</p>
+                        <p class="text-xl font-bold text-accent"><?php echo e($projects->count()); ?></p>
                         <p class="text-xs text-gray-500">projets</p>
                     </div>
                 </div>
@@ -80,13 +80,13 @@
         </div>
     </section>
 
-    {{-- Compétences --}}
-    @include('partials.skills')
+    
+    <?php echo $__env->make('partials.skills', array_diff_key(get_defined_vars(), ['__data' => 1, '__path' => 1]))->render(); ?>
 
-    {{-- Projets --}}
-    @include('partials.projects')
+    
+    <?php echo $__env->make('partials.projects', array_diff_key(get_defined_vars(), ['__data' => 1, '__path' => 1]))->render(); ?>
 
-    {{-- Formation --}}
+    
     <section id="formation" class="py-24 px-6 md:px-16 border-t border-border">
         <div class="max-w-4xl mx-auto">
 
@@ -101,7 +101,7 @@
                 <div class="absolute left-6 top-0 bottom-0 w-px bg-border"></div>
 
                 <div class="space-y-10">
-                    @foreach($formations as $f)
+                    <?php $__currentLoopData = $formations; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $f): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                     <div class="reveal flex gap-8">
                         <div class="relative flex-shrink-0">
                             <div class="w-12 h-12 rounded-full bg-card border-2 border-accent flex items-center justify-center z-10 relative">
@@ -112,25 +112,28 @@
                             <div class="flex flex-col md:flex-row md:items-start justify-between gap-3 mb-3">
                                 <div>
                                     <span class="font-mono text-xs px-3 py-1 rounded-full bg-accent/10 border border-accent/30 text-accent mb-2 inline-block">
-                                        {{ $f['badge'] }}
+                                        <?php echo e($f['badge']); ?>
+
                                     </span>
-                                    <h3 class="font-display text-lg font-bold text-white mt-1">{{ $f['title'] }}</h3>
-                                    <p class="font-mono text-sm text-lime">{{ $f['school'] }}</p>
+                                    <h3 class="font-display text-lg font-bold text-white mt-1"><?php echo e($f['title']); ?></h3>
+                                    <p class="font-mono text-sm text-lime"><?php echo e($f['school']); ?></p>
                                 </div>
                                 <span class="font-mono text-xs text-gray-500 bg-surface px-3 py-1 rounded-full border border-border whitespace-nowrap h-fit">
-                                    {{ $f['period'] }}
+                                    <?php echo e($f['period']); ?>
+
                                 </span>
                             </div>
-                            <p class="font-mono text-sm text-gray-400 leading-relaxed">{{ $f['desc'] }}</p>
+                            <p class="font-mono text-sm text-gray-400 leading-relaxed"><?php echo e($f['desc']); ?></p>
                         </div>
                     </div>
-                    @endforeach
+                    <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                 </div>
             </div>
         </div>
     </section>
 
-    {{-- Contact --}}
-    @include('partials.contact')
+    
+    <?php echo $__env->make('partials.contact', array_diff_key(get_defined_vars(), ['__data' => 1, '__path' => 1]))->render(); ?>
 
-@endsection
+<?php $__env->stopSection(); ?>
+<?php echo $__env->make('layouts.app', array_diff_key(get_defined_vars(), ['__data' => 1, '__path' => 1]))->render(); ?><?php /**PATH C:\Users\USER\portfolio\resources\views/portfolio/index.blade.php ENDPATH**/ ?>

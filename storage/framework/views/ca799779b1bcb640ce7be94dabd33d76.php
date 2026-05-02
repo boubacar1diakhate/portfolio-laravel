@@ -1,16 +1,16 @@
-@extends('layouts.app')
 
-@section('title', $project->title . ' — Portfolio Boubacar')
-@section('meta_desc', $project->description)
 
-@section('content')
+<?php $__env->startSection('title', $project->title . ' — Portfolio Boubacar'); ?>
+<?php $__env->startSection('meta_desc', $project->description); ?>
+
+<?php $__env->startSection('content'); ?>
 
 
     <div class="pt-32 pb-24 px-6 md:px-16">
         <div class="max-w-5xl mx-auto">
 
             <!-- Retour -->
-            <a href="{{ route('home') }}#projets"
+            <a href="<?php echo e(route('home')); ?>#projets"
                 class="inline-flex items-center gap-2 font-mono text-sm text-gray-500 hover:text-lime transition-colors mb-10">
                 ← Retour aux projets
             </a>
@@ -18,41 +18,44 @@
             <!-- Statut + Titre -->
             <div class="mb-10">
                 <div class="flex flex-wrap items-center gap-3 mb-4">
-                    @if ($project->status === 'en_cours')
+                    <?php if($project->status === 'en_cours'): ?>
                         <span
                             class="font-mono text-xs px-3 py-1 rounded-full bg-yellow-500/20 border border-yellow-500/40 text-yellow-400 flex items-center gap-2">
                             <span class="w-1.5 h-1.5 rounded-full bg-yellow-400 animate-pulse inline-block"></span>
                             En cours de développement
                         </span>
-                    @else
+                    <?php else: ?>
                         <span class="font-mono text-xs px-3 py-1 rounded-full bg-lime/10 border border-lime/30 text-lime">
                             ✓ Projet terminé
                         </span>
-                    @endif
+                    <?php endif; ?>
                 </div>
 
                 <h1 class="font-display text-4xl md:text-6xl font-extrabold text-white mb-4">
-                    {{ $project->title }}
+                    <?php echo e($project->title); ?>
+
                 </h1>
                 <p class="font-mono text-gray-400 text-base leading-relaxed max-w-2xl">
-                    {{ $project->description }}
+                    <?php echo e($project->description); ?>
+
                 </p>
 
                 <!-- Technologies -->
-                @if ($project->technologies)
+                <?php if($project->technologies): ?>
                     <div class="flex flex-wrap gap-3 mt-6">
-                        @foreach ($project->technologies as $tech)
+                        <?php $__currentLoopData = $project->technologies; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $tech): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                             <span class="font-mono text-sm px-4 py-2 rounded-full bg-card border border-border text-accent">
-                                {{ $tech }}
+                                <?php echo e($tech); ?>
+
                             </span>
-                        @endforeach
+                        <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                     </div>
-                @endif
+                <?php endif; ?>
 
                 <!-- Liens -->
                 <div class="flex flex-wrap gap-4 mt-8">
-                    @if ($project->github_url)
-                        <a href="{{ $project->github_url }}" target="_blank"
+                    <?php if($project->github_url): ?>
+                        <a href="<?php echo e($project->github_url); ?>" target="_blank"
                             class="inline-flex items-center gap-2 bg-card border border-border text-gray-300 font-mono px-6 py-3 rounded-full hover:border-accent hover:text-white transition-colors text-sm">
                             <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
                                 <path
@@ -60,13 +63,13 @@
                             </svg>
                             Voir le code GitHub
                         </a>
-                    @endif
-                    @if ($project->demo_url)
-                        <a href="{{ $project->demo_url }}" target="_blank"
+                    <?php endif; ?>
+                    <?php if($project->demo_url): ?>
+                        <a href="<?php echo e($project->demo_url); ?>" target="_blank"
                             class="inline-flex items-center gap-2 bg-lime text-dark font-mono font-bold px-6 py-3 rounded-full hover:bg-yellow-300 transition-colors text-sm">
                             Voir la démo live ↗
                         </a>
-                    @endif
+                    <?php endif; ?>
                 </div>
             </div>
 
@@ -77,7 +80,7 @@
                     Démonstration vidéo
                 </h2>
 
-                @php
+                <?php
                     $videos = [
                         'teranga-dentaire' => 'QszM09fNLfM',
                         'natte-app' => 'JMvWEU741vs',
@@ -85,24 +88,24 @@
                         'cinecritique' => 'hePMlgoCr9g',
                     ];
                     $videoId = $videos[$project->slug] ?? '';
-                @endphp
+                ?>
 
-                @if ($videoId)
+                <?php if($videoId): ?>
                     <div class="bg-card border border-border rounded-2xl overflow-hidden shadow-2xl">
                         <div class="flex items-center gap-2 px-4 py-3 border-b border-border bg-surface">
                             <span class="w-3 h-3 rounded-full bg-coral"></span>
                             <span class="w-3 h-3 rounded-full" style="background:#F59E0B"></span>
                             <span class="w-3 h-3 rounded-full bg-lime"></span>
-                            <span class="ml-4 font-mono text-xs text-gray-500">Démonstration — {{ $project->title }}</span>
+                            <span class="ml-4 font-mono text-xs text-gray-500">Démonstration — <?php echo e($project->title); ?></span>
                         </div>
                         <div class="relative w-full" style="padding-bottom: 56.25%;">
                             <iframe class="absolute inset-0 w-full h-full"
-                                src="https://www.youtube.com/embed/{{ $videoId }}?rel=0" frameborder="0"
+                                src="https://www.youtube.com/embed/<?php echo e($videoId); ?>?rel=0" frameborder="0"
                                 allowfullscreen>
                             </iframe>
                         </div>
                     </div>
-                @else
+                <?php else: ?>
                     <div class="bg-card border border-dashed border-border rounded-2xl overflow-hidden">
                         <div class="flex items-center gap-2 px-4 py-3 border-b border-border bg-surface">
                             <span class="w-3 h-3 rounded-full bg-coral"></span>
@@ -116,94 +119,99 @@
                                     d="M23.495 6.205a3.007 3.007 0 0 0-2.088-2.088c-1.87-.501-9.396-.501-9.396-.501s-7.507-.01-9.396.501A3.007 3.007 0 0 0 .527 6.205a31.247 31.247 0 0 0-.522 5.805 31.247 31.247 0 0 0 .522 5.783 3.007 3.007 0 0 0 2.088 2.088c1.868.502 9.396.502 9.396.502s7.506 0 9.396-.502a3.007 3.007 0 0 0 2.088-2.088 31.247 31.247 0 0 0 .5-5.783 31.247 31.247 0 0 0-.5-5.805zM9.609 15.601V8.408l6.264 3.602z" />
                             </svg>
                             <p class="font-mono text-sm text-gray-600">
-                                {{ $project->status === 'en_cours' ? 'Vidéo disponible à la fin du développement' : 'Vidéo de démonstration à venir' }}
+                                <?php echo e($project->status === 'en_cours' ? 'Vidéo disponible à la fin du développement' : 'Vidéo de démonstration à venir'); ?>
+
                             </p>
                         </div>
                     </div>
-                @endif
+                <?php endif; ?>
             </div>
 
             <!-- DESCRIPTION -->
-            @if ($project->long_description)
+            <?php if($project->long_description): ?>
                 <div class="bg-card border border-border rounded-2xl p-8 mb-8">
                     <h2 class="font-display text-2xl font-bold text-white mb-5 flex items-center gap-3">
                         <span class="w-2 h-2 rounded-full bg-accent"></span>
                         À propos du projet
                     </h2>
                     <div class="font-mono text-sm text-gray-400 leading-relaxed space-y-3">
-                        @foreach (explode("\n", $project->long_description) as $line)
-                            @if (str_starts_with(trim($line), '-'))
+                        <?php $__currentLoopData = explode("\n", $project->long_description); $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $line): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                            <?php if(str_starts_with(trim($line), '-')): ?>
                                 <div class="flex gap-3">
                                     <span class="text-accent mt-0.5 flex-shrink-0">▸</span>
-                                    <span>{{ trim(ltrim(trim($line), '-')) }}</span>
+                                    <span><?php echo e(trim(ltrim(trim($line), '-'))); ?></span>
                                 </div>
-                            @elseif(trim($line))
-                                <p>{{ trim($line) }}</p>
-                            @endif
-                        @endforeach
+                            <?php elseif(trim($line)): ?>
+                                <p><?php echo e(trim($line)); ?></p>
+                            <?php endif; ?>
+                        <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                     </div>
                 </div>
-            @endif
+            <?php endif; ?>
 
             <!-- STACK TECHNIQUE -->
-            @if ($project->technologies)
+            <?php if($project->technologies): ?>
                 <div class="bg-card border border-border rounded-2xl p-8 mb-10">
                     <h2 class="font-display text-2xl font-bold text-white mb-5 flex items-center gap-3">
                         <span class="w-2 h-2 rounded-full bg-lime"></span>
                         Stack technique
                     </h2>
                     <div class="grid grid-cols-2 md:grid-cols-3 gap-3">
-                        @foreach ($project->technologies as $tech)
+                        <?php $__currentLoopData = $project->technologies; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $tech): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                             <div class="flex items-center gap-3 bg-surface border border-border rounded-xl px-4 py-3">
                                 <span class="w-2 h-2 rounded-full bg-accent flex-shrink-0"></span>
-                                <span class="font-mono text-sm text-gray-300">{{ $tech }}</span>
+                                <span class="font-mono text-sm text-gray-300"><?php echo e($tech); ?></span>
                             </div>
-                        @endforeach
+                        <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                     </div>
                 </div>
-            @endif
+            <?php endif; ?>
 
             <!-- AUTRES PROJETS -->
-            @if ($related->count())
+            <?php if($related->count()): ?>
                 <div class="border-t border-border pt-12">
                     <h2 class="font-display text-2xl font-bold text-white mb-8">Autres projets</h2>
                     <div class="grid md:grid-cols-3 gap-6">
-                        @foreach ($related as $rel)
-                            <a href="{{ route('project.show', $rel->slug) }}"
+                        <?php $__currentLoopData = $related; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $rel): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                            <a href="<?php echo e(route('project.show', $rel->slug)); ?>"
                                 class="project-card bg-card border border-border rounded-2xl overflow-hidden group block">
                                 <div
                                     class="aspect-video bg-surface flex items-center justify-center overflow-hidden relative">
                                     <div class="absolute inset-0 opacity-20"
-                                        style="background: linear-gradient(135deg, {{ $rel->status === 'en_cours' ? '#F59E0B, #EF4444' : '#7C3AED, #BFFF00' }});">
+                                        style="background: linear-gradient(135deg, <?php echo e($rel->status === 'en_cours' ? '#F59E0B, #EF4444' : '#7C3AED, #BFFF00'); ?>);">
                                     </div>
                                     <span class="font-display text-3xl font-black text-white opacity-30 relative z-10">
-                                        {{ strtoupper(substr($rel->title, 0, 2)) }}
+                                        <?php echo e(strtoupper(substr($rel->title, 0, 2))); ?>
+
                                     </span>
                                     <div class="absolute top-2 left-2">
-                                        @if ($rel->status === 'en_cours')
+                                        <?php if($rel->status === 'en_cours'): ?>
                                             <span
                                                 class="font-mono text-xs px-2 py-0.5 rounded-full bg-yellow-500/90 text-dark font-bold">En
                                                 cours</span>
-                                        @else
+                                        <?php else: ?>
                                             <span
                                                 class="font-mono text-xs px-2 py-0.5 rounded-full bg-lime/90 text-dark font-bold">✓
                                                 Terminé</span>
-                                        @endif
+                                        <?php endif; ?>
                                     </div>
                                 </div>
                                 <div class="p-4">
                                     <h3
                                         class="font-display font-bold text-white text-sm group-hover:text-lime transition-colors">
-                                        {{ $rel->title }}</h3>
-                                    <p class="font-mono text-xs text-gray-500 mt-1 line-clamp-2">{{ $rel->description }}
+                                        <?php echo e($rel->title); ?></h3>
+                                    <p class="font-mono text-xs text-gray-500 mt-1 line-clamp-2"><?php echo e($rel->description); ?>
+
                                     </p>
                                 </div>
                             </a>
-                        @endforeach
+                        <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                     </div>
                 </div>
-            @endif
+            <?php endif; ?>
 
         </div>
     </div>
-@endsection
+<?php $__env->stopSection(); ?>
+
+<?php echo $__env->make('layouts.app', array_diff_key(get_defined_vars(), ['__data' => 1, '__path' => 1]))->render(); ?><?php /**PATH C:\Users\USER\portfolio\resources\views/portfolio/project.blade.php ENDPATH**/ ?>
