@@ -59,6 +59,7 @@ class DatabaseSeeder extends Seeder
                 'github_url'       => 'https://github.com/boubacar112',
                 'demo_url'         => null,
                 'video_url'        => null, // ← ajouter le lien YouTube ici
+                 'image'        => 'images/projects/teranga-dentaire.png',
                 'status'           => 'termine',
                 'featured'         => true,
                 'order'            => 1,
@@ -74,6 +75,7 @@ class DatabaseSeeder extends Seeder
                 'github_url'       => 'https://github.com/boubacar112',
                 'demo_url'         => null,
                 'video_url'        => null, // ← ajouter le lien YouTube ici
+                'image'        => 'images/projects/natte-app.png',
                 'status'           => 'termine',
                 'featured'         => true,
                 'order'            => 2,
@@ -89,6 +91,7 @@ class DatabaseSeeder extends Seeder
                 'github_url'       => 'https://github.com/boubacar112',
                 'demo_url'         => null,
                 'video_url'        => null, // ← ajouter le lien YouTube ici
+                'image'        => 'images/projects/red-product.png',
                 'status'           => 'en_cours',
                 'featured'         => true,
                 'order'            => 3,
@@ -104,6 +107,7 @@ class DatabaseSeeder extends Seeder
                 'github_url'       => 'https://github.com/boubacar112',
                 'demo_url'         => null,
                 'video_url'        => null, // ← ajouter le lien YouTube ici
+                'image'        => 'images/projects/cinecritique.png',
                 'status'           => 'en_cours',
                 'featured'         => true,
                 'order'            => 4,
