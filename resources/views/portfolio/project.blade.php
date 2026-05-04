@@ -79,7 +79,7 @@
 
                 @php
                     $videos = [
-                        'teranga-dentaire' => 'QszM09fNLfM',
+                        'teranga-dentaire' => 'mtL4HGCyX5Q',
                         'natte-app' => 'JMvWEU741vs',
                         'red-product' => 'ud9vlpv6Dko',
                         'cinecritique' => 'hePMlgoCr9g',
