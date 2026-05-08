@@ -79,12 +79,14 @@
 
                 @php
                     $videos = [
-                        'teranga-dentaire' => 'mtL4HGCyX5Q',
-                        'natte-app' => 'JMvWEU741vs',
-                        'red-product' => 'ud9vlpv6Dko',
-                        'cinecritique' => 'hePMlgoCr9g',
+                        'teranga-dentaire' => ['type' => 'vimeo', 'id' => '1189491788'],
+                        'natte-app'        => ['type' => 'youtube', 'id' => 'JMvWEU741vs'],
+                        'red-product' =>  ['type' => 'youtube', 'id' => 'ud9vlpv6Dko'],
+                        'cinecritique' => ['type' => 'youtube', 'id' => 'hePMlgoCr9g'],
                     ];
-                    $videoId = $videos[$project->slug] ?? '';
+                    $video = $videos[$project->slug] ?? ['type' => '', 'id' => ''];
+                    $videoId = $video['id'];
+                   $videoType = $video['type'];
                 @endphp
 
                 @if ($videoId)
@@ -97,7 +99,9 @@
                         </div>
                         <div class="relative w-full" style="padding-bottom: 56.25%;">
                             <iframe class="absolute inset-0 w-full h-full"
-                                src="https://www.youtube.com/embed/{{ $videoId }}?rel=0" frameborder="0"
+                                src="{{ $videoType === 'vimeo' 
+                                     ? 'https://player.vimeo.com/video/' . $videoId 
+                                    : 'https://www.youtube.com/embed/' . $videoId . '?rel=0' }}"
                                 allowfullscreen>
                             </iframe>
                         </div>

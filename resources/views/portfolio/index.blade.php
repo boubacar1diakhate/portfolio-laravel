@@ -54,6 +54,8 @@
                         Je souhaite rejoindre un environnement stimulant où je pourrai mettre mes compétences
                         en pratique, continuer à apprendre et contribuer à des projets à fort impact.
                     </p>
+
+                
                 </div>
 
                 <!-- Langues -->

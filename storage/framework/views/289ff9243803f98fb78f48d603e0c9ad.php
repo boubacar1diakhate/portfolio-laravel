@@ -38,6 +38,12 @@
                        class="inline-flex items-center gap-2 border border-border text-gray-300 font-mono px-6 py-3 rounded-full hover:border-accent hover:text-white transition-colors text-sm">
                         Me contacter
                     </a>
+                    <a href="<?php echo e(asset('files/CV_Boubacar_Diakhate.pdf')); ?>" 
+                       download="CV_Boubacar_Diakhate.pdf"
+                        target="_blank"
+                         class="inline-flex items-center gap-2 bg-lime text-dark font-mono font-bold px-6 py-3 rounded-full hover:bg-yellow-300 transition-colors text-sm">
+                            Télécharger CV ↓
+                   </a>
                 </div>
 
                 <!-- Stats -->
