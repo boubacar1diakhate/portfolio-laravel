@@ -26,23 +26,45 @@ class Project extends Model
         return $this->status === 'en_cours';
     }
 
-    // Convertit le lien YouTube watch en lien embed
+    public function getVideoEmbedUrl(): ?string
+    {
+        if (!$this->video_url) {
+            return null;
+        }
+
+        $url = trim($this->video_url);
+
+        if (preg_match('/youtu\.be\/([a-zA-Z0-9_-]{11})/', $url, $matches)) {
+            return 'https://www.youtube.com/embed/' . $matches[1] . '?rel=0&modestbranding=1&autoplay=1&mute=1';
+        }
+
+        if (preg_match('/youtube\.com\/watch\?v=([a-zA-Z0-9_-]{11})/', $url, $matches)) {
+            return 'https://www.youtube.com/embed/' . $matches[1] . '?rel=0&modestbranding=1&autoplay=1&mute=1';
+        }
+
+        if (preg_match('/youtube\.com\/embed\/([a-zA-Z0-9_-]{11})/', $url, $matches)) {
+            return 'https://www.youtube.com/embed/' . $matches[1] . '?rel=0&modestbranding=1&autoplay=1&mute=1';
+        }
+
+        if (preg_match('/vimeo\.com\/(\d+)/', $url, $matches)) {
+            return 'https://player.vimeo.com/video/' . $matches[1] . '?autoplay=1&muted=1';
+        }
+
+        if (preg_match('/player\.vimeo\.com\/video\/(\d+)/', $url, $matches)) {
+            return 'https://player.vimeo.com/video/' . $matches[1] . '?autoplay=1&muted=1';
+        }
+
+        if (str_contains($url, 'player.vimeo.com/video/') || str_contains($url, 'youtube.com/embed/')) {
+            return $url;
+        }
+
+        return null;
+    }
+
     public function getYoutubeEmbedUrl(): ?string
-{
-    if (!$this->video_url) return null;
-
-    // Format youtu.be/XXXXXXXXXXX
-    if (preg_match('/youtu\.be\/([a-zA-Z0-9_-]{11})/', $this->video_url, $matches)) {
-        return 'https://www.youtube.com/embed/' . $matches[1] . '?rel=0&modestbranding=1';
+    {
+        return $this->getVideoEmbedUrl();
     }
-
-    // Format youtube.com/watch?v=XXXXXXXXXXX
-    if (preg_match('/youtube\.com\/watch\?v=([a-zA-Z0-9_-]{11})/', $this->video_url, $matches)) {
-        return 'https://www.youtube.com/embed/' . $matches[1] . '?rel=0&modestbranding=1';
-    }
-
-    return null;
-}
 
     public function getRouteKeyName(): string
     {

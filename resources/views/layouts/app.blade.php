@@ -199,6 +199,10 @@
         bars.forEach(b => { b.style.width = '0'; barObserver.observe(b); });
     </script>
 
+    @if (file_exists(public_path('build/manifest.json')) || file_exists(public_path('hot')))
+        @vite(['resources/css/app.css', 'resources/js/app.js'])
+    @endif
+
     @stack('scripts')
 </body>
 </html>

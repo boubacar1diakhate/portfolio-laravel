@@ -78,18 +78,10 @@
                 </h2>
 
                 @php
-                    $videos = [
-                        'teranga-dentaire' => ['type' => 'vimeo', 'id' => '1189491788'],
-                        'natte-app'        => ['type' => 'youtube', 'id' => 'JMvWEU741vs'],
-                        'red-product' =>  ['type' => 'youtube', 'id' => 'ud9vlpv6Dko'],
-                        'cinecritique' => ['type' => 'youtube', 'id' => 'hePMlgoCr9g'],
-                    ];
-                    $video = $videos[$project->slug] ?? ['type' => '', 'id' => ''];
-                    $videoId = $video['id'];
-                   $videoType = $video['type'];
+                    $videoEmbedUrl = $project->getVideoEmbedUrl();
                 @endphp
 
-                @if ($videoId)
+                @if ($videoEmbedUrl)
                     <div class="bg-card border border-border rounded-2xl overflow-hidden shadow-2xl">
                         <div class="flex items-center gap-2 px-4 py-3 border-b border-border bg-surface">
                             <span class="w-3 h-3 rounded-full bg-coral"></span>
@@ -99,10 +91,11 @@
                         </div>
                         <div class="relative w-full" style="padding-bottom: 56.25%;">
                             <iframe class="absolute inset-0 w-full h-full"
-                                src="{{ $videoType === 'vimeo' 
-                                     ? 'https://player.vimeo.com/video/' . $videoId 
-                                    : 'https://www.youtube.com/embed/' . $videoId . '?rel=0' }}"
-                                allowfullscreen>
+                                src="{{ $videoEmbedUrl }}"
+                                title="Démonstration — {{ $project->title }}"
+                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                                allowfullscreen
+                                referrerpolicy="strict-origin-when-cross-origin">
                             </iframe>
                         </div>
                     </div>

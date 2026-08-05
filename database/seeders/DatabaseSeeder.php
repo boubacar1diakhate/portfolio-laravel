@@ -58,7 +58,7 @@ class DatabaseSeeder extends Seeder
                 'technologies'     => ['Laravel', 'MySQL', 'Blade', 'Bootstrap', 'JavaScript', 'UML'],
                 'github_url'       => 'https://github.com/boubacar112',
                 'demo_url'         => null,
-                'video_url'        => null, // ← ajouter le lien YouTube ici
+                'video_url'        => 'https://vimeo.com/1189491788',
                  'image'        => 'images/projects/teranga-dentaire.png',
                 'status'           => 'termine',
                 'featured'         => true,
@@ -74,7 +74,7 @@ class DatabaseSeeder extends Seeder
                 'technologies'     => ['Laravel', 'React.js', 'PostgreSQL', 'TailwindCSS', 'API REST', 'UML'],
                 'github_url'       => 'https://github.com/boubacar112',
                 'demo_url'         => null,
-                'video_url'        => null, // ← ajouter le lien YouTube ici
+                'video_url'        => 'https://www.youtube.com/embed/JMvWEU741vs',
                 'image'        => 'images/projects/natte-app.png',
                 'status'           => 'termine',
                 'featured'         => true,
@@ -90,7 +90,7 @@ class DatabaseSeeder extends Seeder
                 'technologies'     => ['Laravel', 'Vue.js', 'MySQL', 'TailwindCSS', 'Docker'],
                 'github_url'       => 'https://github.com/boubacar112',
                 'demo_url'         => null,
-                'video_url'        => null, // ← ajouter le lien YouTube ici
+                'video_url'        => 'https://www.youtube.com/watch?v=ud9vlpv6Dko',
                 'image'        => 'images/projects/red-product.png',
                 'status'           => 'en_cours',
                 'featured'         => true,
@@ -106,7 +106,7 @@ class DatabaseSeeder extends Seeder
                 'technologies'     => ['Django', 'React.js', 'PostgreSQL', 'TailwindCSS', 'API TMDb', 'Python'],
                 'github_url'       => 'https://github.com/boubacar112',
                 'demo_url'         => null,
-                'video_url'        => null, // ← ajouter le lien YouTube ici
+                'video_url'        => 'https://www.youtube.com/watch?v=hePMlgoCr9g',
                 'image'        => 'images/projects/cinecritique.png',
                 'status'           => 'en_cours',
                 'featured'         => true,

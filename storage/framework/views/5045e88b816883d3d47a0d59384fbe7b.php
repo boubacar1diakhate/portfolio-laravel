@@ -199,6 +199,10 @@
         bars.forEach(b => { b.style.width = '0'; barObserver.observe(b); });
     </script>
 
+    <?php if(file_exists(public_path('build/manifest.json')) || file_exists(public_path('hot'))): ?>
+        <?php echo app('Illuminate\Foundation\Vite')(['resources/css/app.css', 'resources/js/app.js']); ?>
+    <?php endif; ?>
+
     <?php echo $__env->yieldPushContent('scripts'); ?>
 </body>
 </html><?php /**PATH C:\Users\USER\portfolio\resources\views/layouts/app.blade.php ENDPATH**/ ?>
