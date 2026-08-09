@@ -22,7 +22,8 @@ git push origin main
 
 3. Importer le projet sur Vercel
 - Dans Vercel, "New Project" → sélectionnez le repo → racine = `/`.
-- Vercel détectera le `Dockerfile` et utilisera le builder Docker (`@vercel/docker`).
+- Le projet contient un `Dockerfile`, donc Vercel doit l’utiliser automatiquement.
+- Ne créez pas `vercel.json` avec une section `builds`, car cela peut forcer un builder non publié.
 
 4. Configurer les variables d'environnement (Settings → Environment Variables)
 - `APP_KEY` : valeur générée à l'étape 1
